@@ -6,6 +6,13 @@
 + Convert a DataTable to a string in C#
 + Print DataTable to Console in C#
 + Returning DataSet as DTO class in C#
++ Mapping DataTables and DataRows to Objects in C# and .NET
+
+How to map data in DataRow and DataTable objects to full C# classes
+
+https://github.com/exceptionnotfound/DataNamesMappingDemo
+
+https://github.com/gtechsltn/DataNamesMappingDemo
 
 ```
 using System;
@@ -150,6 +157,18 @@ if (!Environment.MachineName.Equals("MANH", StringComparison.OrdinalIgnoreCase))
 DataTable in C#
 
 https://www.bytehide.com/blog/datatable-csharp
+
+Manually Create DataTable in C#
+
+https://www.codeproject.com/Articles/30490/How-to-Manually-Create-a-Typed-DataTable
+
+ADO.NET DataTable in C#
+
+https://dotnettutorials.net/lesson/ado-net-datatable/
+
+Mapping DataTables and DataRows to Objects in C# and .NET
+
+https://exceptionnotfound.net/mapping-datatables-and-datarows-to-objects-in-csharp-and-net-using-reflection/
 
 C#: Case-Insensitive String Contains Best Practices (Oct 18, 2024)
 
