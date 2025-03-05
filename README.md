@@ -1,9 +1,11 @@
 # How to Debug DataSet and/or DataTable
-+ Debug DataSet (Dummy value to the .txt, .log, .csv file)
-+ Debug DataTable (Dummy value to the .txt, .log, .csv file)
++ System.Data.DataTable in C#
++ Debug System.Data.DataSet (Dummy value to the .txt, .log, .csv file)
++ Debug System.Data.DataTable (Dummy value to the .txt, .log, .csv file)
 + Case-Insensitive or Ignore Case (Không phân biệt chữ hoa chữ thường hoặc bỏ qua chữ hoa chữ thường)
 + Convert a DataTable to a string in C#
 + Print DataTable to Console in C#
++ Returning DataSet as DTO class in C#
 
 ```
 using System;
@@ -145,6 +147,10 @@ if (!Environment.MachineName.Equals("MANH", StringComparison.OrdinalIgnoreCase))
 
 # References
 
+DataTable in C#
+
+https://www.bytehide.com/blog/datatable-csharp
+
 C#: Case-Insensitive String Contains Best Practices (Oct 18, 2024)
 
 https://www.pietschsoft.com/post/2024/10/18/csharp-case-insensitive-string-contains-best-practices
@@ -160,3 +166,7 @@ https://www.codeproject.com/Tips/1147879/Print-DataTable-to-Console-and-more
 Convert a DataTable to a string in C#
 
 https://stackoverflow.com/questions/1104121/how-to-convert-a-datatable-to-a-string-in-c
+
+Returning DataSet as DTO class
+
+https://stackoverflow.com/questions/30365682/returning-dataset-as-dto-class
