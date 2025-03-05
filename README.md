@@ -232,13 +232,17 @@ Mapping DataTables and DataRows to Objects in C# and .NET
 
 https://exceptionnotfound.net/mapping-datatables-and-datarows-to-objects-in-csharp-and-net-using-reflection/
 
-C#: Case-Insensitive String Contains Best Practices (Oct 18, 2024)
+C# Case-Insensitive String Contains Best Practices (Oct 18, 2024)
 
 https://www.pietschsoft.com/post/2024/10/18/csharp-case-insensitive-string-contains-best-practices
 
 C# Contains Ignore Case: Quick guide (Feb 5, 2022)
 
 https://josipmisko.com/posts/c-sharp-contains-ignore-case
+
+How to Perform Case-Insensitive Substring Search in C#
+
+https://code-maze.com/substring-in-string-case-insensitive-csharp/
 
 Print DataTable to Console (and more)
 
