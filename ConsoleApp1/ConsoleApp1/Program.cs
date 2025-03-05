@@ -14,29 +14,45 @@ namespace ConsoleApp1
             StringWriter stringWriter = null;
             StreamWriter streamWriter = null;
 
-            // TODO: Build DataSet HERE
-            DataSet ds = new DataSet();
+            Console.InputEncoding = System.Text.Encoding.UTF8;
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+            // The log file path
+            string strMsgNativeFilePathLog = $@"{Path.GetTempPath()}\MANH.log";
 
             // TODO: Build DataTable HERE
-            DataTable table = ds.Tables["MsgNative"];
+            DataTable dataTable01 = new DataTable("MsgNative");
+
+            // Step 1: Add Column to DataTable in C#
+            dataTable01.Columns.Add("Id", typeof(int));
+            dataTable01.Columns.Add("Name", typeof(string));
+
+            // Step 2: Adding DataRow to DataTable in C#
+            DataRow dataRow01 = dataTable01.NewRow();
+            dataRow01["Id"] = 1;
+            dataRow01["Name"] = "John Doe";
+            dataTable01.Rows.Add(dataRow01);
+
+            // TODO: Build DataSet HERE
+            DataSet ds = new DataSet();
+            ds.Tables.Add(dataTable01);
+
+            // TODO: Debug DataTable HERE
+            dataTable01 = ds.Tables["MsgNative"];
 
             // Debug on MANH machine only
             if (Environment.MachineName.Equals("MANH", StringComparison.OrdinalIgnoreCase))
             {
-                // The log file path
-                string strMsgNativeFilePathLog = $@"C:\TMP\MANH.log";
-
                 // If DataSet has Table MsgNative and Table MsgNative has row
-                if (ds.Tables.Contains("MsgNative") && table.Rows.Count > 0)
+                if (ds.Tables.Contains("MsgNative") && dataTable01.Rows.Count > 0)
                 {
-                    // Write to log file only
-                    // ====================================================================================================
                     // Using StreamWritter to append to a log file.
+                    // ========================================================================================================================
                     using (streamWriter = new StreamWriter(strMsgNativeFilePathLog, true))
                     {
-                        foreach (DataRow dr in table.Rows)
+                        foreach (DataRow dr in dataTable01.Rows)
                         {
-                            for (int i = 0; i < table.Columns.Count; i++)
+                            for (int i = 0; i < dataTable01.Columns.Count; i++)
                             {
                                 if (!Convert.IsDBNull(dr[i]))
                                 {
@@ -51,77 +67,83 @@ namespace ConsoleApp1
                                         streamWriter.Write(dr[i].ToString());
                                     }
                                 }
-                                if (i < table.Columns.Count - 1)
+                                if (i < dataTable01.Columns.Count - 1)
                                 {
                                     streamWriter.Write(",");
                                 }
                             }
-                            streamWriter.Write(streamWriter.NewLine);
+                            streamWriter.Write(streamWriter.NewLine); // => WRITE TO FILE
                         }
-                    }
-                    System.Diagnostics.Process.Start(@"C:\Program Files\Notepad++\notepad++.exe", strMsgNativeFilePathLog);
 
-                    // Write to Console Output only
-                    // ====================================================================================================
-                    // Loop through each row in the table.
-                    foreach (DataRow row in table.Rows)
-                    {
-                        stringWriter = new StringWriter();
-
-                        // Loop through each column.
-                        foreach (DataColumn col in table.Columns)
+                        // Loop through each row in the table.
+                        foreach (DataRow row in dataTable01.Rows)
                         {
-                            // Output the value of each column's data.
-                            stringWriter.Write(row[col].ToString() + ", ");
+                            stringWriter = new StringWriter();
+
+                            // Loop through each column.
+                            foreach (DataColumn col in dataTable01.Columns)
+                            {
+                                // Output the value of each column's data.
+                                stringWriter.Write(row[col].ToString() + ", ");
+                            }
+
+                            // Write to the output
+                            output = stringWriter.ToString();
+
+                            // Trim off the trailing ", ", so the output looks correct.
+                            if (output.Length > 2)
+                            {
+                                output = output.Substring(0, output.Length - 2);
+                            }
+
+                            // Display the row in the console window.
+                            Console.WriteLine(output);
+                            streamWriter.WriteLine(output); // => WRITE TO FILE
                         }
-
-                        // Write to the output
-                        output = stringWriter.ToString();
-
-                        // Trim off the trailing ", ", so the output looks correct.
-                        if (output.Length > 2)
-                        {
-                            output = output.Substring(0, output.Length - 2);
-                        }
-
-                        // Display the row in the console window.
-                        Console.WriteLine(output);
                     }
                 }
             }
 
             // Returning DataSet as DTO class
-            // ====================================================================================================
+            // ========================================================================================================================
 
-            // Build DataTable in C#
-            // Step 1: How to Create a DataTable using C#
-            DataTable dataTable = new DataTable("Customers");
+            // How to Create a DataTable using C#
+            DataTable dataTable02 = new DataTable("Customers");
 
             // Step 1: Add Column to DataTable in C#
-            table.Columns.Add("Id", typeof(int));
-            table.Columns.Add("Name", typeof(string));
+            dataTable02.Columns.Add("Id", typeof(int));
+            dataTable02.Columns.Add("Name", typeof(string));
 
-            // Step 3: Populating Your DataTable in C#
+            // Step 2: Adding DataRow to DataTable in C#
+            DataRow dataRow02 = dataTable02.NewRow();
+            dataRow02["Id"] = 2;
+            dataRow02["Name"] = "Nguyễn Viết Mạnh";
+            dataTable02.Rows.Add(dataRow02);
 
-            // Adding DataRow to DataTable in C#
-            DataRow dataRow = table.NewRow();
-            dataRow["Id"] = 1;
-            dataRow["Name"] = "John Doe";
-            table.Rows.Add(dataRow);
-
-            IList<DTOClass> items = dataTable.AsEnumerable().Select(row =>
+            IList<DTOClass> dtos = dataTable02.AsEnumerable().Select(row =>
                                     new DTOClass
                                     {
-                                        Id = row.Field<string>("Id"),
+                                        Id = row.Field<int>("Id"),
                                         Name = row.Field<string>("Name")
                                     }).ToList();
 
-            foreach (var dto in items)
+            // Print all items in a list of DTO class
+            // ========================================================================================================================
+            using (streamWriter = new StreamWriter(strMsgNativeFilePathLog, true))
             {
-                Console.WriteLine($"Id: {dto.Id}");
-                Console.WriteLine($"Name: {dto.Name}");
+                foreach (var dto in dtos)
+                {
+                    Console.WriteLine($"Id: {dto.Id}, Name: {dto.Name}");
+                    streamWriter.WriteLine($"Id: {dto.Id}, Name: {dto.Name}"); // => WRITE TO FILE
+                }
             }
 
+            // Print all items in a list of DTO class
+            // ========================================================================================================================
+            System.Diagnostics.Process.Start(@"C:\Program Files\Notepad++\notepad++.exe", strMsgNativeFilePathLog);
+
+            // Obtains the next character or function key pressed by the user. The pressed key is displayed in the Console window.
+            // ========================================================================================================================
             Console.WriteLine();
             Console.Write("DONE. Press any key to exit...");
             Console.ReadKey();
@@ -130,7 +152,7 @@ namespace ConsoleApp1
 
     public class DTOClass
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }
