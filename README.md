@@ -7,6 +7,26 @@
 + Print DataTable to Console in C#
 + Returning DataSet as DTO class in C#
 + Mapping DataTables and DataRows to Objects in C# and .NET
++ How to debugging the DataSet and DataTable
++ Compare 2 Lists to see the Differences and Duplicates
+
+Duplicates
+
+https://stackoverflow.com/questions/21148175/compare-two-liststring-and-print-the-duplicates
+
+Differences
+
+https://stackoverflow.com/questions/61705868/how-to-find-difference-between-lists
+
+https://stackoverflow.com/questions/35043947/comparing-two-lists-with-linq-and-retrieve-the-different-items
+
+Compare Two Lists Via LINQ
+
+https://stackoverflow.com/questions/38643794/compare-two-lists-via-linq
+
+Compare two list using linq in C#
+
+https://stackoverflow.com/questions/58482533/compare-two-list-using-linq-in-c-sharp
 
 ## How to map data in DataRow and DataTable objects to full C# classes
 
